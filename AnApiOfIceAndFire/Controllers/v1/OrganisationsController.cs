@@ -18,9 +18,15 @@ namespace AnApiOfIceAndFire.Controllers.v1
 
         [HttpHead]
         [HttpGet]
-        public async Task<HttpResponseMessage> Get(int? page = DefaultPage, int? pageSize = DefaultPageSize)
+        public async Task<HttpResponseMessage> Get(int? page = DefaultPage, int? pageSize = DefaultPageSize, string name = "", string founded = "", string founder = "", bool? hasKnownMembers = null)
         {
-            var organisationsFilter = new OrganisationFilter();
+            var organisationsFilter = new OrganisationFilter()
+            {
+                Name = name,
+                Founded = founded,
+                Founder = founder,
+                HasKnownMembers = hasKnownMembers
+            };
 
             return await Get(page, pageSize, organisationsFilter);
         }
