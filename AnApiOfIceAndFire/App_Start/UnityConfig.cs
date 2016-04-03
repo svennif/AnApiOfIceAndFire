@@ -63,6 +63,7 @@ namespace AnApiOfIceAndFire
             container.RegisterType<IPagingLinksFactory<BookFilter>, BookPagingLinksFactory>();
             container.RegisterType<IPagingLinksFactory<CharacterFilter>, CharacterPagingLinksFactory>();
             container.RegisterType<IPagingLinksFactory<HouseFilter>, HousePagingLinksFactory>();
+            container.RegisterType<IPagingLinksFactory<OrganisationFilter>, OrganisationPagingLinksFactory>();
             container.RegisterType<IApiSettings, WebConfigSettings>();
         }
     }

@@ -269,6 +269,8 @@
     <Compile Include="Models\v1\Mappers\MediaTypeMapper.cs" />
     <Compile Include="Models\v1\MediaType.cs" />
     <Compile Include="Models\v1\Organisation.cs" />
+    <Compile Include="Models\v1\OrganisationLinkCreator.cs" />
+    <Compile Include="Models\v1\OrganisationPagingLinksFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

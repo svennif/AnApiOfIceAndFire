@@ -20,7 +20,7 @@ namespace AnApiOfIceAndFire.Controllers.v1
         [HttpGet]
         public async Task<HttpResponseMessage> Get(int? page = DefaultPage, int? pageSize = DefaultPageSize, string name = "", string founded = "", string founder = "", bool? hasKnownMembers = null)
         {
-            var organisationsFilter = new OrganisationFilter()
+            var organisationsFilter = new OrganisationFilter
             {
                 Name = name,
                 Founded = founded,
