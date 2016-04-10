@@ -19,6 +19,7 @@ namespace AnApiOfIceAndFire.Data.Feeder
         public int? Spouse { get; set; }
         public int[] Children { get; set; }
         public int[] Allegiances { get; set; }
+        public int[] Organisations { get; set; }
         public int[] Books { get; set; }
         public int[] PovBooks { get; set; }
         public string[] PlayedBy { get; set; }

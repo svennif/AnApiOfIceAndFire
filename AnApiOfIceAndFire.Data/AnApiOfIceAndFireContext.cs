@@ -9,6 +9,7 @@ namespace AnApiOfIceAndFire.Data
         public DbSet<BookEntity> Books { get; set; }
         public DbSet<CharacterEntity> Characters { get; set; }
         public DbSet<HouseEntity> Houses { get; set; }
+        //public DbSet<OrganisationEntity> Organisations { get; set; }
 
         public AnApiOfIceAndFireContext() : this("AnApiOfIceAndFire_db") { }
 

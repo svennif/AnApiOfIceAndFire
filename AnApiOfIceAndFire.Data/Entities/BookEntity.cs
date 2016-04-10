@@ -25,5 +25,7 @@ namespace AnApiOfIceAndFire.Data.Entities
 
         public ICollection<CharacterEntity> Characters { get; set; } = new List<CharacterEntity>();
         public ICollection<CharacterEntity> PovCharacters { get; set; } = new List<CharacterEntity>();
+
+        public ICollection<OrganisationEntity> Organisations { get; set; } = new List<OrganisationEntity>(); 
     }
 }

@@ -52,6 +52,8 @@ namespace AnApiOfIceAndFire.Data.Entities
 
         public ICollection<BookEntity> Books { get; set; } = new List<BookEntity>();
         public ICollection<BookEntity> PovBooks { get; set; } = new List<BookEntity>();
+
+        public ICollection<OrganisationEntity> Organisations { get; set; } 
     }
 }
 
