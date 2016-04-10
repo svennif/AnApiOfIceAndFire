@@ -9,6 +9,7 @@ namespace AnApiOfIceAndFire.Domain.Models
         string Description { get; }
         string Founded { get; }
         ICharacter Founder { get; }
-        IReadOnlyCollection<ICharacter> KnownMembers { get; } 
+        IReadOnlyCollection<IBook> Books { get; }
+        IReadOnlyCollection<ICharacter> Members { get; } 
     }
 }
