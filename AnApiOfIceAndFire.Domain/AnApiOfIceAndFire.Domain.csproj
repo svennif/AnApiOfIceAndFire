@@ -73,6 +73,7 @@
     <Compile Include="Models\IHouse.cs" />
     <Compile Include="Models\MediaType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\OrganisationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
