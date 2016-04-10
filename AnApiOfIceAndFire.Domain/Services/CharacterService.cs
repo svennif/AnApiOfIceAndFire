@@ -17,7 +17,8 @@ namespace AnApiOfIceAndFire.Domain.Services
             character => character.Father,
             character => character.Mother,
             character => character.Spouse,
-            character => character.Allegiances
+            character => character.Allegiances,
+            character => character.Organisations
         };
 
         public CharacterService(IReadOnlyRepository<CharacterEntity,int> repository) : base(repository, CharacterIncludeProperties) { }

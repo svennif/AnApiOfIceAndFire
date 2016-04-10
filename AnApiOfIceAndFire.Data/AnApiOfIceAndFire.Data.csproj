@@ -69,11 +69,13 @@
     <Compile Include="Configurations\BookConfiguration.cs" />
     <Compile Include="Configurations\CharacterConfiguration.cs" />
     <Compile Include="Configurations\HouseConfiguration.cs" />
+    <Compile Include="Configurations\OrganisationConfiguration.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\BookEntity.cs" />
     <Compile Include="Entities\CharacterEntity.cs" />
     <Compile Include="Entities\HouseEntity.cs" />
     <Compile Include="Entities\MediaTypeEntity.cs" />
+    <Compile Include="Entities\OrganisationEntity.cs" />
     <Compile Include="Migrations\201601151534573_Initial.cs" />
     <Compile Include="Migrations\201601151534573_Initial.Designer.cs">
       <DependentUpon>201601151534573_Initial.cs</DependentUpon>

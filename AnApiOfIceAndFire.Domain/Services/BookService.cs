@@ -14,6 +14,7 @@ namespace AnApiOfIceAndFire.Domain.Services
         private static readonly Expression<Func<BookEntity, object>>[] BookIncludeProperties =
         {
             book => book.Characters,
+            book => book.Organisations,
             book => book.PovCharacters
         };
 

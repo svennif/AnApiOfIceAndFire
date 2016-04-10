@@ -56,6 +56,7 @@
     <Compile Include="CharacterDto.cs" />
     <Compile Include="Feeder.cs" />
     <Compile Include="HouseDto.cs" />
+    <Compile Include="OrganisationDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +74,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\houses.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\organisations.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
