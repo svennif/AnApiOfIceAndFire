@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AnApiOfIceAndFire.Data.Entities;
+using AnApiOfIceAndFire.Domain.Adapters;
 using AnApiOfIceAndFire.Domain.Models;
 using AnApiOfIceAndFire.Domain.Models.Filters;
 using Geymsla;
@@ -20,19 +21,32 @@ namespace AnApiOfIceAndFire.Domain.Services
             organisation => organisation.Members
         };
 
-
         public OrganisationService(IReadOnlyRepository<OrganisationEntity, int> repository, Expression<Func<OrganisationEntity, object>>[] includeProperties) : base(repository, includeProperties)
         {
         }
 
         protected override IOrganisation CreateModel(OrganisationEntity entity)
         {
-            throw new NotImplementedException();
+            return new OrganisationAdapter(entity);
         }
 
         protected override Func<IQueryable<OrganisationEntity>, IQueryable<OrganisationEntity>> CreatePredicate(OrganisationFilter filter)
         {
-            throw new NotImplementedException();
+            Func<IQueryable<OrganisationEntity>, IQueryable<OrganisationEntity>> organisationFilters = organisationEntities =>
+            {
+                if (filter.Name != null)
+                {
+                    organisationEntities = organisationEntities.Where(x => x.Name.Equals(filter.Name));
+                }
+                if (filter.Founded != null)
+                {
+                    organisationEntities = organisationEntities.Where(x => x.Founded.Equals(filter.Founded));
+                }
+
+                return organisationEntities;
+            };
+
+            return organisationFilters;
         }
     }
 }
