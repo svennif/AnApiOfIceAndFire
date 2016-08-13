@@ -2,6 +2,14 @@
     margin: 1em 0;
 }
 
+#bootstrap-overrides .navbar-default {
+    background-color: white;
+}
+
+#bootstrap-overrides .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background-color: white;
+}
+
 #documentation pre {
     /*min-height: 300px;*/
     max-height: 300px;
@@ -9,9 +17,9 @@
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #333;
+    color: #777;
 }
 
-.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
-    color: #333;
+#bootstrap-overrides .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: black;
 }
