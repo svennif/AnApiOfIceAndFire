@@ -23,3 +23,11 @@
 #bootstrap-overrides .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
     color: black;
 }
+
+#bootstrap-overrides .footer a {
+    color: #777;
+}
+
+#bootstrap-overrides .footer a:hover {
+    color: black;
+}
