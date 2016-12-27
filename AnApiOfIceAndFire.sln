@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnApiOfIceAndFire", "src\AnApiOfIceAndFire\AnApiOfIceAndFire.xproj", "{FF55D430-7FEB-4431-A9A4-CA7A436CB10B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnApiOfIceAndFire.Tests", "tests\AnApiOfIceAndFire.Tests\AnApiOfIceAndFire.Tests.csproj", "{61B8D8EE-F8BD-45E3-A621-164B4C08578C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AEB6B44-815A-4428-BEF9-1362AD454A7D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnApiOfIceAndFire.Tests", "tests\AnApiOfIceAndFire.Tests\AnApiOfIceAndFire.Tests.xproj", "{BC8C4C3E-671F-49AB-873E-42D5B49A4156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,16 +26,16 @@ Global
 		{FF55D430-7FEB-4431-A9A4-CA7A436CB10B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF55D430-7FEB-4431-A9A4-CA7A436CB10B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF55D430-7FEB-4431-A9A4-CA7A436CB10B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61B8D8EE-F8BD-45E3-A621-164B4C08578C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61B8D8EE-F8BD-45E3-A621-164B4C08578C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61B8D8EE-F8BD-45E3-A621-164B4C08578C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61B8D8EE-F8BD-45E3-A621-164B4C08578C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC8C4C3E-671F-49AB-873E-42D5B49A4156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC8C4C3E-671F-49AB-873E-42D5B49A4156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC8C4C3E-671F-49AB-873E-42D5B49A4156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC8C4C3E-671F-49AB-873E-42D5B49A4156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FF55D430-7FEB-4431-A9A4-CA7A436CB10B} = {7B192C36-26CA-4743-B656-BAF6629334D6}
-		{61B8D8EE-F8BD-45E3-A621-164B4C08578C} = {0AEB6B44-815A-4428-BEF9-1362AD454A7D}
+		{BC8C4C3E-671F-49AB-873E-42D5B49A4156} = {0AEB6B44-815A-4428-BEF9-1362AD454A7D}
 	EndGlobalSection
 EndGlobal
