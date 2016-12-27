@@ -4,6 +4,11 @@ sudo: required
 mono: none
 dotnet: 1.0.0-preview2-003131
 
+# safelist
+branches:
+  only:
+  - port-to-dotnet_core
+
 script:
   - dotnet restore
   - dotnet build
