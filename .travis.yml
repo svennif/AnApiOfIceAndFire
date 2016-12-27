@@ -11,5 +11,5 @@ branches:
 
 script:
   - dotnet restore
-  - dotnet build */**/project.json
-  - dotnet test /tests/**/project.json
+  - dotnet build src/**/project.json
+  - dotnet test tests/**/project.json
