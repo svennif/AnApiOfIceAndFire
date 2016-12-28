@@ -19,7 +19,7 @@ namespace AnApiOfIceAndFire.Tests.UnitTests.Controllers.v1
             url.Setup(x => x.Link(It.Is<string>(s => string.Equals(BooksController.MultipleBooksRouteName, s)), It.IsAny<object>())).Returns(() => BooksUrl);
             url.Setup(x => x.Link(It.Is<string>(s => string.Equals(CharactersController.MultipleCharactersRouteName, s)), It.IsAny<object>())).Returns(() => CharactersUrl);
             url.Setup(x => x.Link(It.Is<string>(s => string.Equals(HousesController.MultipleHousesRouteName, s)), It.IsAny<object>())).Returns(() => HousesUrl);
-            var sut = new EndpointsController()
+            var sut = new EndpointsController
             {
                 Url = url.Object
             };

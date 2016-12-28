@@ -1,8 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Net;
+using AnApiOfIceAndFire.Infrastructure.Versioning;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace AnApiOfIceAndFire
 {
@@ -24,7 +33,30 @@ namespace AnApiOfIceAndFire
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(opts =>
+            {
+                //Use indented to make it more readable for the consumer, using gzip is better for bandwidth anyway.
+                opts.SerializerSettings.Formatting = Formatting.Indented;
+
+                //Use camelCase for naming of properties since it's more of a standard
+                opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+                //Use the ISO format instead of Microsoft format. This is to make it easier for the consumer to parse the date, especially if they don't use a Microsoft stack themselves.
+                opts.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+
+                //We want to represent our enums with their names instead of their numerical values. This is to make it more readable for the consumer.
+                opts.SerializerSettings.Converters.Add(new StringEnumConverter());
+
+            });
+
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ApiVersionReader = new AcceptHeaderVersionReader();
+                options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
+                options.CreateBadRequest = (request, code, message, detail) => new BadRequestObjectResult(new { message = "Given API version is not supported" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

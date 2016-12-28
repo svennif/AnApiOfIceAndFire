@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AnApiOfIceAndFire.Controllers.v1
 {
+    [ApiVersion("1")]
     [Route("api/houses")]
     public class HousesController : Controller
     {
