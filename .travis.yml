@@ -12,4 +12,5 @@ branches:
 script:
   - dotnet restore
   - dotnet build */**/project.json
-  - dotnet test tests/**/project.json
+  - dotnet test tests/AnApiOfIceAndFire.Tests/project.json
+  - dotnet test tests/AnApiOfIceAndFire.Domain.Tests/project.json
