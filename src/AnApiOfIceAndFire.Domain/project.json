@@ -3,7 +3,7 @@
 
   "dependencies": {
     "AnApiOfIceAndFire.Data": "1.0.0-*",
-    "NETStandard.Library": "1.6.0",
+    "NETStandard.Library": "1.6.1",
     "System.Linq.Queryable": "4.3.0"
   },
 
