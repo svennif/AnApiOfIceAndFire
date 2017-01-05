@@ -9,6 +9,16 @@ namespace AnApiOfIceAndFire.Domain.Tests.Books
 {
     public class BookFilterTests
     {
+        [Fact]
+        public void NullQueryable_WhenApplying_ThenEmptyQueryableIsReturned()
+        {
+            var filter = new BookFilter();
+
+            var filteredBooks = filter.Apply(null).ToList();
+
+            Assert.Equal(0, filteredBooks.Count);
+        }
+
         [Fact] 
         public void NoPropertiesSetOnFilter_WhenApplying_ThenNoBooksAreFiltered()
         {
