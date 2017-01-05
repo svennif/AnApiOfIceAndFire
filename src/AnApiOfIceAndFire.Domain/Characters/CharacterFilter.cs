@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AnApiOfIceAndFire.Data.Entities;
 
 namespace AnApiOfIceAndFire.Domain.Characters
@@ -44,23 +45,22 @@ namespace AnApiOfIceAndFire.Domain.Characters
                 }
             }
 
-            if (Gender.HasValue)
+           return ApplyGenderFilter(querySet);
+        }
+
+        private IQueryable<CharacterEntity> ApplyGenderFilter(IQueryable<CharacterEntity> querySet)
+        {
+            switch (Gender)
             {
-                if (Gender.Value == Characters.Gender.Female)
-                {
-                    querySet = querySet.Where(c => c.IsFemale.HasValue && c.IsFemale.Value);
-                }
-                else if (Gender.Value == Characters.Gender.Male)
-                {
-                    querySet = querySet.Where(c => c.IsFemale.HasValue && !c.IsFemale.Value);
-                }
-                else
-                {
-                    querySet = querySet.Where(c => !c.IsFemale.HasValue);
-                }
+                case Characters.Gender.Female:
+                    return querySet.Where(c => c.IsFemale.HasValue && c.IsFemale.Value);
+                case Characters.Gender.Male:
+                    return querySet.Where(c => c.IsFemale.HasValue && !c.IsFemale.Value);
+                case Characters.Gender.Unknown:
+                    return querySet.Where(c => !c.IsFemale.HasValue);
+                default:
+                    return querySet;
             }
-            
-            return querySet;
         }
     }
 }
