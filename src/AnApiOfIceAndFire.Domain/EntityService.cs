@@ -30,13 +30,7 @@ namespace AnApiOfIceAndFire.Domain
                 return filteredEntities.OrderBy(fe => fe.Id);
             };
 
-            var pagedEntities = await _entityRepository.GetPageAsync(orderedPredicate, pageNumber, pageSize);
-            if (pagedEntities == null)
-            {
-                return PagedList.Empty<TEntity>();
-            }
-
-            return pagedEntities;
+            return await _entityRepository.GetPageAsync(orderedPredicate, pageNumber, pageSize);
         }
     }
 }
