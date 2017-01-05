@@ -36,11 +36,11 @@ namespace AnApiOfIceAndFire.Domain.Characters
             {
                 if (IsAlive.Value)
                 {
-                    querySet = querySet.Where(c => string.IsNullOrEmpty(c.Died));
+                    querySet = querySet.Where(c => c.Died.Length == 0);
                 }
                 else
                 {
-                    querySet = querySet.Where(c => !string.IsNullOrEmpty(c.Died));
+                    querySet = querySet.Where(c => c.Died.Length > 0);
                 }
             }
 

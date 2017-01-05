@@ -16,7 +16,77 @@ namespace AnApiOfIceAndFire.Domain.Houses
 
         public IQueryable<HouseEntity> Apply(IQueryable<HouseEntity> querySet)
         {
-            throw new System.NotImplementedException();
+            if (querySet == null) return Enumerable.Empty<HouseEntity>().AsQueryable();
+
+            if (Name != null)
+            {
+                querySet = querySet.Where(h => h.Name.Equals(Name));
+            }
+            if (Region != null)
+            {
+                querySet = querySet.Where(h => h.Region.Equals(Region));
+            }
+            if (Words != null)
+            {
+                querySet = querySet.Where(h => h.Words.Equals(Words));
+            }
+            if (HasWords.HasValue)
+            {
+                if (HasWords.Value)
+                {
+                    querySet = querySet.Where(h => h.Words.Length > 0);
+                }
+                else
+                {
+                    querySet = querySet.Where(h => h.Words.Length == 0);
+                }
+            }
+            if (HasTitles.HasValue)
+            {
+                if (HasTitles.Value)
+                {
+                    querySet = querySet.Where(h => h.Titles.Length > 0);
+                }
+                else
+                {
+                    querySet = querySet.Where(h => h.Titles.Length == 0);
+                }
+            }
+            if (HasSeats.HasValue)
+            {
+                if (HasSeats.Value)
+                {
+                    querySet = querySet.Where(h => h.Seats.Length > 0);
+                }
+                else
+                {
+                    querySet = querySet.Where(h => h.Seats.Length == 0);
+                }
+            }
+            if (HasDiedOut.HasValue)
+            {
+                if (HasDiedOut.Value)
+                {
+                    querySet = querySet.Where(h => h.DiedOut.Length > 0);
+                }
+                else
+                {
+                    querySet = querySet.Where(h => h.DiedOut.Length == 0);
+                }
+            }
+            if (HasAncestralWeapons.HasValue)
+            {
+                if (HasAncestralWeapons.Value)
+                {
+                    querySet = querySet.Where(h => h.AncestralWeapons.Length > 0);
+                }
+                else
+                {
+                    querySet = querySet.Where(h => h.AncestralWeapons.Length == 0);
+                }
+            }
+
+            return querySet;
         }
     }
 }
