@@ -12,6 +12,8 @@ namespace AnApiOfIceAndFire.Domain.Books
 
         public IQueryable<BookEntity> Apply(IQueryable<BookEntity> querySet)
         {
+            if (querySet == null) return Enumerable.Empty<BookEntity>().AsQueryable();
+
             //We only check null on the name since you might want to retrieve all characters with no name, which is represented as an empty string
             if (Name != null) 
             {

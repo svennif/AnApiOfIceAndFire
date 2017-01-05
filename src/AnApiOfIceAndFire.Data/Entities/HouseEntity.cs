@@ -2,11 +2,11 @@
 {
     public class HouseEntity : BaseEntity
     {
-        public string CoatOfArms { get; set; }
-        public string Words { get; set; }
-        public string Region { get; set; }
-        public string Founded { get; set; }
-        public string DiedOut { get; set; }
+        public string CoatOfArms { get; set; } = string.Empty;
+        public string Words { get; set; } = string.Empty;
+        public string Region { get; set; } = string.Empty;
+        public string Founded { get; set; } = string.Empty;
+        public string DiedOut { get; set; } = string.Empty;
         public string[] Seats { get; set; } = new string[0];
         public string[] Titles { get; set; } = new string[0];
         public string[] AncestralWeapons { get; set; } = new string[0];

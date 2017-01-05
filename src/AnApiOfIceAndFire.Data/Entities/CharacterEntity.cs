@@ -2,9 +2,9 @@
 {
     public class CharacterEntity : BaseEntity
     {
-        public string Culture { get; set; }
-        public string Born { get; set; }
-        public string Died { get; set; }
+        public string Culture { get; set; } = string.Empty;
+        public string Born { get; set; } = string.Empty;
+        public string Died { get; set; } = string.Empty;
         public bool? IsFemale { get; set; }
         public string[] Aliases { get; set; } = new string[0];
         public string[] TvSeries { get; set; } = new string[0];

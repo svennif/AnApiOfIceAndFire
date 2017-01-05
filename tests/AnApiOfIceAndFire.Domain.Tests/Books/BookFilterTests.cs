@@ -9,7 +9,7 @@ namespace AnApiOfIceAndFire.Domain.Tests.Books
 {
     public class BookFilterTests
     {
-        [Fact]
+        [Fact] 
         public void NoPropertiesSetOnFilter_WhenApplying_ThenNoBooksAreFiltered()
         {
             var filter = new BookFilter();
