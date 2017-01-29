@@ -11,8 +11,13 @@ namespace AnApiOfIceAndFire.Data.Entities
         public int MediaTypeId { get; set; }
         public string Country { get; set; } = string.Empty;
         public DateTime ReleaseDate { get; set; } //DocumentDB does not have support for DateTime, we need to store epoch time or something similar
+        public int? PrecededById { get; set; }
+        public int? FollowedById { get; set; }
 
         public int[] Characters { get; set; } = new int[0];
         public int[] PovCharacters { get; set; } = new int[0];
     }
 }
+
+
+//"ReleaseDate":"1996-08-01T00:00:00","PrecededById":null,"FollowedBy":2},
