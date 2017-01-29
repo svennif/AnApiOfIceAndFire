@@ -22,6 +22,13 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnApiOfIceAndFire.Domain", 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnApiOfIceAndFire.Domain.Tests", "tests\AnApiOfIceAndFire.Domain.Tests\AnApiOfIceAndFire.Domain.Tests.xproj", "{797491D4-62ED-4030-BEA1-8B4E7C2CA736}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{1DD34D67-CD22-433A-B2C9-1CB11FCB5498}"
+	ProjectSection(SolutionItems) = preProject
+		data\books.json = data\books.json
+		data\characters.json = data\characters.json
+		data\houses.json = data\houses.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
