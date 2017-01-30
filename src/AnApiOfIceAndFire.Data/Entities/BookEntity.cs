@@ -18,6 +18,3 @@ namespace AnApiOfIceAndFire.Data.Entities
         public int[] PovCharacters { get; set; } = new int[0];
     }
 }
-
-
-//"ReleaseDate":"1996-08-01T00:00:00","PrecededById":null,"FollowedBy":2},
