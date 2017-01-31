@@ -11,5 +11,7 @@ namespace AnApiOfIceAndFire.Data
         Task<TEntity> GetAsync<TEntity>(int id) where TEntity : BaseEntity;
 
         Task<IPagedList<TEntity>> GetPageAsync<TEntity>(Func<IQueryable<TEntity>, IQueryable<TEntity>> queryFilter, int pageNumber, int pageSize) where TEntity : BaseEntity;
+
+        Task<TEntity> Upsert<TEntity>(TEntity entity) where TEntity : BaseEntity;
     }
 }

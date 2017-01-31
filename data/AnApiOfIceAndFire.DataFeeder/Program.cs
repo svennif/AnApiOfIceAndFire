@@ -18,16 +18,11 @@ namespace AnApiOfIceAndFire.DataFeeder
                 var characters = Time(() => JsonConvert.DeserializeObject<List<CharacterData>>(File.ReadAllText("..\\characters.json")), "Loading of character data");
                 var houses = Time(() => JsonConvert.DeserializeObject<List<HouseData>>(File.ReadAllText("..\\characters.json")), "Loading of house data");
 
-                //Load data from database
-
-                //Calculate which data to delete and which to upsert
-                
                 //Calculate mappings, example: which characters should belong to a given book.
-
-                //Delete data
 
                 //Upsert data
 
+                //Add option to either load data or dump data depending on arguments given
 
             }, "Total time");
         }
