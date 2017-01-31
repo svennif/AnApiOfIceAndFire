@@ -58,6 +58,7 @@ namespace AnApiOfIceAndFire.DataFeeder
                 var bookEntity = Mapper.Map<BookEntity>(book);
                 bookEntity.Characters = characterRelations.GetCharacters(bookEntity.Id).ToArray();
                 bookEntity.PovCharacters = characterRelations.GetPovCharacters(bookEntity.Id).ToArray();
+                //bookEntity.ReleaseDate
 
                 books.Add(bookEntity);
             }
@@ -94,49 +95,34 @@ namespace AnApiOfIceAndFire.DataFeeder
             {
                 foreach (var book in character.Books)
                 {
-                    if (bookCharacterMappings.ContainsKey(book))
-                    {
-                        var list = bookCharacterMappings[book];
-                        list.Add(character.Id);
-                        bookCharacterMappings[book] = list;
-                    }
-                    else
-                    {
-                        var list = new List<int> { character.Id };
-                        bookCharacterMappings[book] = list;
-                    }
+                    UpsertRelation(bookCharacterMappings, book, character.Id);
                 }
                 foreach (var povBook in character.PovBooks)
                 {
-                    if (povBookCharacterMappings.ContainsKey(povBook))
-                    {
-                        var list = povBookCharacterMappings[povBook];
-                        list.Add(character.Id);
-                        povBookCharacterMappings[povBook] = list;
-                    }
-                    else
-                    {
-                        var list = new List<int> { character.Id };
-                        povBookCharacterMappings[povBook] = list;
-                    }
+                    UpsertRelation(povBookCharacterMappings, povBook, character.Id);
                 }
                 foreach (var allegiance in character.Allegiances)
                 {
-                    if (swornMembersMapping.ContainsKey(allegiance))
-                    {
-                        var list = swornMembersMapping[allegiance];
-                        list.Add(character.Id);
-                        swornMembersMapping[allegiance] = list;
-                    }
-                    else
-                    {
-                        var list = new List<int> { character.Id };
-                        swornMembersMapping[allegiance] = list;
-                    }
+                    UpsertRelation(swornMembersMapping, allegiance, character.Id);
                 }
             }
 
             return new CharacterRelationsMapping(bookCharacterMappings, povBookCharacterMappings, swornMembersMapping);
+        }
+
+        private static void UpsertRelation(Dictionary<int, List<int>> relationMapping, int relationIdentifier, int relationValue)
+        {
+            if (relationMapping.ContainsKey(relationIdentifier))
+            {
+                var mappings = relationMapping[relationIdentifier];
+                mappings.Add(relationValue);
+                relationMapping[relationIdentifier] = mappings;
+            }
+            else
+            {
+                var mappings = new List<int>() {relationValue};
+                relationMapping[relationIdentifier] = mappings;
+            }
         }
 
         private static void Time(Action action, string message)
