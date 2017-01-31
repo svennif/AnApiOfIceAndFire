@@ -7,7 +7,6 @@
         public bool? IsFemale { get; set; }
         public string Culture { get; set; }
         public string[] Titles { get; set; }
-        public string[] OtherTitles { get; set; }
         public string[] Aliases { get; set; }
         public string Born { get; set; }
         public string Died { get; set; }

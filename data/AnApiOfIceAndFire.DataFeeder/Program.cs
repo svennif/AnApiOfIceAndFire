@@ -20,8 +20,8 @@ namespace AnApiOfIceAndFire.DataFeeder
                 var houses = Time(() => JsonConvert.DeserializeObject<List<HouseData>>(File.ReadAllText("..\\characters.json")), "Loading of house data");
 
                 var mappedBooks = Time(() => MapBooks(books, characters), "Mapping of book data");
-
-                //Calculate mappings, example: which characters should belong to a given book.
+                var mappedCharacters = Time(() => MapCharacters(characters), "Mapping of character data");
+                var mappedHouses = Time(() => MapHouses(houses, characters), "Mapping of house data");
 
                 //Upsert data
 
@@ -101,6 +101,94 @@ namespace AnApiOfIceAndFire.DataFeeder
             }
 
             return books;
+        }
+
+        private static List<CharacterEntity> MapCharacters(List<CharacterData> characterData)
+        {
+            var characters = new List<CharacterEntity>();
+
+            foreach (var chrData in characterData)
+            {
+                var character = new CharacterEntity
+                {
+                    Id = chrData.Id,
+                    Name = chrData.Name,
+                    Born = chrData.Born,
+                    Died = chrData.Died,
+                    Culture = chrData.Culture,
+                    Titles = chrData.Titles,
+                    Aliases = chrData.Aliases,
+                    IsFemale = chrData.IsFemale,
+                    Allegiances = chrData.Allegiances,
+                    ChildrenIds = chrData.Children,
+                    FatherId = chrData.Father,
+                    MotherId = chrData.Mother,
+                    SpouseId = chrData.Spouse,
+                    PlayedBy = chrData.PlayedBy,
+                    TvSeries = chrData.TvSeries,
+                    Books = chrData.Books,
+                    PovBooks = chrData.PovBooks,
+                    Type = "CharacterEntity"
+                };
+
+                characters.Add(character);
+            }
+
+            return characters;
+        }
+
+        private static List<HouseEntity> MapHouses(List<HouseData> houseData, List<CharacterData> characterData)
+        {
+            var houses = new List<HouseEntity>();
+            var swornMembersMapping = new Dictionary<int, List<int>>();
+
+            foreach (var chr in characterData)
+            {
+                foreach (var allegiance in chr.Allegiances)
+                {
+                    if (swornMembersMapping.ContainsKey(allegiance))
+                    {
+                        var list = swornMembersMapping[allegiance];
+                        list.Add(chr.Id);
+                        swornMembersMapping[allegiance] = list;
+                    }
+                    else
+                    {
+                        var list = new List<int>() { chr.Id };
+                        swornMembersMapping[allegiance] = list;
+                    }
+                }
+            }
+
+            foreach (var house in houseData)
+            {
+                var houseEntity = new HouseEntity
+                {
+                    Id = house.Id,
+                    Name = house.Name,
+                    Region = house.Region,
+                    Words = house.Words,
+                    Titles = house.Titles,
+                    AncestralWeapons = house.AncestralWeapons,
+                    Seats = house.Seats,
+                    Founded = house.Founded,
+                    FounderId = house.Founder,
+                    DiedOut = house.DiedOut,
+                    CadetBranches = house.CadetBranches,
+                    CoatOfArms = house.CoatOfArms,
+                    CurrentLordId = house.CurrentLord,
+                    HeirId = house.Heir,
+                    OverlordId = house.Overlord,
+                    Type = "HouseEntity"
+                };
+
+                if (swornMembersMapping.ContainsKey(houseEntity.Id))
+                {
+                    houseEntity.SwornMembers = swornMembersMapping[houseEntity.Id].ToArray();
+                }
+            }
+
+           return houses;
         }
 
         private static void Time(Action action, string message)
