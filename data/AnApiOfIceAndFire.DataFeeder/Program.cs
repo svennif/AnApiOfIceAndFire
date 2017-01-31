@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AnApiOfIceAndFire.Data.Entities;
+using AutoMapper;
 using Newtonsoft.Json;
 
 namespace AnApiOfIceAndFire.DataFeeder
@@ -13,11 +14,27 @@ namespace AnApiOfIceAndFire.DataFeeder
     {
         public static void Main(string[] args)
         {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<BookData, BookEntity>()
+                    .ForMember(character => character.Type, opt => opt.UseValue("BookEntity"))
+                    .ForMember(book => book.Characters, opt => opt.Ignore())
+                    .ForMember(book => book.PovCharacters, opt => opt.Ignore())
+                    .ForMember(book => book.ReleaseDate, opt => opt.Ignore());
+
+                cfg.CreateMap<CharacterData, CharacterEntity>()
+                    .ForMember(character => character.Type, opt => opt.UseValue("CharacterEntity"));
+
+                cfg.CreateMap<HouseData, HouseEntity>()
+                    .ForMember(house => house.Type, opt => opt.UseValue("HouseEntity"))
+                    .ForMember(house => house.SwornMembers, opt => opt.Ignore());
+            });
+
             Time(() =>
             {
                 var books = Time(() => JsonConvert.DeserializeObject<List<BookData>>(File.ReadAllText("..\\books.json")), "Loading of book data");
                 var characters = Time(() => JsonConvert.DeserializeObject<List<CharacterData>>(File.ReadAllText("..\\characters.json")), "Loading of character data");
-                var houses = Time(() => JsonConvert.DeserializeObject<List<HouseData>>(File.ReadAllText("..\\characters.json")), "Loading of house data");
+                var houses = Time(() => JsonConvert.DeserializeObject<List<HouseData>>(File.ReadAllText("..\\houses.json")), "Loading of house data");
 
                 var mappedBooks = Time(() => MapBooks(books, characters), "Mapping of book data");
                 var mappedCharacters = Time(() => MapCharacters(characters), "Mapping of character data");
@@ -72,21 +89,7 @@ namespace AnApiOfIceAndFire.DataFeeder
 
             foreach (var book in bookData)
             {
-                var bookEntity = new BookEntity
-                {
-                    Id = book.Id,
-                    Name = book.Name,
-                    Authors = book.Authors,
-                    NumberOfPages = book.NumberOfPages,
-                    Country = book.Country,
-                    //ReleaseDate = 
-                    ISBN = book.ISBN,
-                    MediaType = book.MediaType,
-                    Type = "BookEntity",
-                    Publisher = book.Publisher,
-                    FollowedById = book.FollowedBy,
-                    PrecededById = book.PrecededBy
-                };
+                var bookEntity = Mapper.Map<BookEntity>(book);
 
                 if (bookCharacterMappings.ContainsKey(bookEntity.Id))
                 {
@@ -105,36 +108,7 @@ namespace AnApiOfIceAndFire.DataFeeder
 
         private static List<CharacterEntity> MapCharacters(List<CharacterData> characterData)
         {
-            var characters = new List<CharacterEntity>();
-
-            foreach (var chrData in characterData)
-            {
-                var character = new CharacterEntity
-                {
-                    Id = chrData.Id,
-                    Name = chrData.Name,
-                    Born = chrData.Born,
-                    Died = chrData.Died,
-                    Culture = chrData.Culture,
-                    Titles = chrData.Titles,
-                    Aliases = chrData.Aliases,
-                    IsFemale = chrData.IsFemale,
-                    Allegiances = chrData.Allegiances,
-                    ChildrenIds = chrData.Children,
-                    FatherId = chrData.Father,
-                    MotherId = chrData.Mother,
-                    SpouseId = chrData.Spouse,
-                    PlayedBy = chrData.PlayedBy,
-                    TvSeries = chrData.TvSeries,
-                    Books = chrData.Books,
-                    PovBooks = chrData.PovBooks,
-                    Type = "CharacterEntity"
-                };
-
-                characters.Add(character);
-            }
-
-            return characters;
+            return characterData.Select(Mapper.Map<CharacterEntity>).ToList();
         }
 
         private static List<HouseEntity> MapHouses(List<HouseData> houseData, List<CharacterData> characterData)
@@ -154,7 +128,7 @@ namespace AnApiOfIceAndFire.DataFeeder
                     }
                     else
                     {
-                        var list = new List<int>() { chr.Id };
+                        var list = new List<int> { chr.Id };
                         swornMembersMapping[allegiance] = list;
                     }
                 }
@@ -162,33 +136,16 @@ namespace AnApiOfIceAndFire.DataFeeder
 
             foreach (var house in houseData)
             {
-                var houseEntity = new HouseEntity
-                {
-                    Id = house.Id,
-                    Name = house.Name,
-                    Region = house.Region,
-                    Words = house.Words,
-                    Titles = house.Titles,
-                    AncestralWeapons = house.AncestralWeapons,
-                    Seats = house.Seats,
-                    Founded = house.Founded,
-                    FounderId = house.Founder,
-                    DiedOut = house.DiedOut,
-                    CadetBranches = house.CadetBranches,
-                    CoatOfArms = house.CoatOfArms,
-                    CurrentLordId = house.CurrentLord,
-                    HeirId = house.Heir,
-                    OverlordId = house.Overlord,
-                    Type = "HouseEntity"
-                };
-
+                var houseEntity = Mapper.Map<HouseEntity>(house);
                 if (swornMembersMapping.ContainsKey(houseEntity.Id))
                 {
                     houseEntity.SwornMembers = swornMembersMapping[houseEntity.Id].ToArray();
                 }
+
+                houses.Add(houseEntity);
             }
 
-           return houses;
+            return houses;
         }
 
         private static void Time(Action action, string message)
