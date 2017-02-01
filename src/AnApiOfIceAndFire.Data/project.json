@@ -1,7 +1,9 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
+    "Microsoft.Azure.DocumentDB.Core": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     "NETStandard.Library": "1.6.1",
     "SimplePagedList": "1.0.2"
   },
