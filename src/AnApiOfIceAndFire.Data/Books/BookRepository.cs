@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
@@ -12,6 +13,12 @@ namespace AnApiOfIceAndFire.Data.Books
         private const string SelectSingleBookQuery = @"SELECT* FROM dbo.books WHERE Id = @Id
                                                        SELECT* FROM dbo.book_character_link WHERE BookId = @Id";
 
+        /// <summary>
+        /// An approximation of the number of characters in each book which can be used to accurately specify an initial capacity for <see cref="BookEntity.CharacterIdentifiers"/>.
+        /// This is a simple but effective way to prevent multiple resizing operations.
+        /// </summary>
+        private static readonly int[] NrOfCharactersApproximation = { 450, 800, 1030, 60, 1250, 90, 80, 870, 60, 60, 270, 10 };
+
         public BookRepository(IOptions<ConnectionOptions> options) : base(options)
         {
         }
@@ -23,22 +30,21 @@ namespace AnApiOfIceAndFire.Data.Books
                 using (var reader = await connection.QueryMultipleAsync(SelectSingleBookQuery, new { Id = id }))
                 {
                     var book = await reader.ReadFirstOrDefaultAsync<BookEntity>();
-
-                    if (book != null)
+                    if (book == null)
                     {
-                        foreach (var characterInBook in await reader.ReadAsync())
-                        {
-                            var characterId = characterInBook.CharacterId;
-                            var type = characterInBook.Type;
+                        return null;
+                    }
 
-                            if (type == 0)
-                            {
-                                book.CharacterIdentifiers.Add(characterId);
-                            }
-                            else
-                            {
-                                book.PovCharacterIdentifiers.Add(characterId);
-                            }
+                    book.CharacterIdentifiers = new List<int>(NrOfCharactersApproximation[book.Id - 1]);
+                    foreach (var characterInBook in await reader.ReadAsync<CharacterInBook>())
+                    {
+                        if (characterInBook.Type == 0)
+                        {
+                            book.CharacterIdentifiers.Add(characterInBook.CharacterId);
+                        }
+                        else
+                        {
+                            book.PovCharacterIdentifiers.Add(characterInBook.CharacterId);
                         }
                     }
 
@@ -84,9 +90,10 @@ namespace AnApiOfIceAndFire.Data.Books
                     {
                         identifiers = books.Select(b => b.Id)
                     })).GroupBy(bcl => bcl.BookId).ToList();
-                
+
                 foreach (var book in books)
                 {
+                    book.CharacterIdentifiers = new List<int>(NrOfCharactersApproximation[book.Id - 1]);
                     var charactersInBook = bookCharacterRelationships.FirstOrDefault(g => g.Key == book.Id);
                     if (charactersInBook != null)
                     {
@@ -103,14 +110,20 @@ namespace AnApiOfIceAndFire.Data.Books
                             {
                                 book.PovCharacterIdentifiers.Add(characterId);
                             }
-                        }    
+                        }
                     }
                 }
 
                 var totalNumberOfBooks = await countTask;
 
-                return  new PagedList<BookEntity>(new PageMetadata(totalNumberOfBooks, page, pageSize), books);
+                return new PagedList<BookEntity>(new PageMetadata(totalNumberOfBooks, page, pageSize), books);
             }
+        }
+
+        private class CharacterInBook
+        {
+            public int CharacterId { get; set; }
+            public int Type { get; set; }
         }
     }
 }

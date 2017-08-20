@@ -16,10 +16,10 @@ namespace AnApiOfIceAndFire.Data.Books
         public DateTime ReleaseDate { get; set; }
 
         [Computed]
-        public ICollection<int> CharacterIdentifiers { get; internal set; } = new List<int>();
+        public ICollection<int> CharacterIdentifiers { get; internal set; }
 
         [Computed]
-        public ICollection<int> PovCharacterIdentifiers { get; internal set; } = new List<int>();
+        public ICollection<int> PovCharacterIdentifiers { get; internal set; } = new List<int>(20);
 
         public string[] ParseAuthors()
         {
