@@ -1,5 +1,5 @@
 [{
-        "Id": 1,
+        "Id": 0,
         "Name": "Tyrion Lannister",
         "IsFemale": false,
         "Culture": "",
@@ -17,7 +17,7 @@
         "PlayedBy": ["Peter Dinklage"],
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     }, {
-        "Id": 238,
+        "Id": 1,
         "Name": "Cersei Lannister",
         "IsFemale": true,
         "Culture": "Westerman",
@@ -36,7 +36,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 271,
+        "Id": 2,
         "Name": "Daenerys Targaryen",
         "IsFemale": true,
         "Culture": "",
@@ -55,7 +55,7 @@
         "TvSeries": []
     },
     {
-        "Id": 583,
+        "Id": 3,
         "Name": "Jon Snow",
         "IsFemale": false,
         "Culture": "Northmen",
@@ -74,7 +74,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 957,
+        "Id": 4,
         "Name": "Sansa Stark",
         "IsFemale": true,
         "Culture": "Northmen",
@@ -93,7 +93,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 148,
+        "Id": 5,
         "Name": "Arya Stark",
         "IsFemale": true,
         "Culture": "Northmen",
@@ -112,7 +112,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 1560,
+        "Id": 6,
         "Name": "Jorah Mormont",
         "IsFemale": false,
         "Culture": "Northmen",
@@ -131,7 +131,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 954,
+        "Id": 7,
         "Name": "Samwell Tarly",
         "IsFemale": false,
         "Culture": "Andal",
@@ -150,7 +150,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 1022,
+        "Id": 8,
         "Name": "Theon Greyjoy",
         "IsFemale": false,
         "Culture": "Ironborn",
@@ -169,7 +169,7 @@
         "TvSeries": ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
     },
     {
-        "Id": 2069,
+        "Id": 9,
         "Name": "Varys",
         "IsFemale": false,
         "Culture": "",
