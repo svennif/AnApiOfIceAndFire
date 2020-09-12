@@ -1,7 +1,7 @@
 [{
         "Id": 0,
         "Name": "Tyrion Lannister",
-        "Image": "/images.lannister.svg",
+        "Image": "../images.lannister.svg",
         "IsFemale": false,
         "Culture": "",
         "Titles": ["Acting Hand of the King (former)", "Master of Coin (former)"],
@@ -20,7 +20,7 @@
     }, {
         "Id": 1,
         "Name": "Cersei Lannister",
-        "Image": "/images.lannister.svg",
+        "Image": "../images.lannister.svg",
         "IsFemale": true,
         "Culture": "Westerman",
         "Titles": ["Light of the West", "Queen Dowager", "Protector of the Realm", "Lady of Casterly Rock", "Queen Regent"],
@@ -40,7 +40,7 @@
     {
         "Id": 2,
         "Name": "Daenerys Targaryen",
-        "Image": "/images.targaryen.svg",
+        "Image": "../images.targaryen.svg",
         "IsFemale": true,
         "Culture": "",
         "Titles": ["Princess"],
@@ -60,7 +60,7 @@
     {
         "Id": 3,
         "Name": "Jon Snow",
-        "Image": "/images.targaryen.svg",
+        "Image": "../images.targaryen.svg",
         "IsFemale": false,
         "Culture": "Northmen",
         "Titles": ["Lord Commander of the Night's Watch"],
@@ -80,7 +80,7 @@
     {
         "Id": 4,
         "Name": "Sansa Stark",
-        "Image": "/images.stark.svg",
+        "Image": "../images.stark.svg",
         "IsFemale": true,
         "Culture": "Northmen",
         "Titles": ["Princess"],
@@ -100,7 +100,7 @@
     {
         "Id": 5,
         "Name": "Arya Stark",
-        "Image": "/images.stark.svg",    
+        "Image": "../images.stark.svg",    
         "IsFemale": true,
         "Culture": "Northmen",
         "Titles": ["Princess"],
@@ -120,7 +120,7 @@
     {
         "Id": 6,
         "Name": "Jorah Mormont",
-        "Image": "/images.stark.svg",
+        "Image": "../images.stark.svg",
         "IsFemale": false,
         "Culture": "Northmen",
         "Titles": ["Ser", "Lord of Bear Island (stripped)"],
@@ -140,7 +140,7 @@
     {
         "Id": 7,
         "Name": "Samwell Tarly",
-        "Image": "/images.lannister.svg",    
+        "Image": "../images.lannister.svg",    
         "IsFemale": false,
         "Culture": "Andal",
         "Titles": [],
@@ -160,7 +160,7 @@
     {
         "Id": 8,
         "Name": "Theon Greyjoy",
-        "Image": "/images.targaryen.svg",
+        "Image": "../images.targaryen.svg",
         "IsFemale": false,
         "Culture": "Ironborn",
         "Titles": ["Prince of Winterfell", "Captain of Sea Bitch", "Lord of the Iron Islands (by law of the green lands)"],
@@ -180,7 +180,7 @@
     {
         "Id": 9,
         "Name": "Varys",
-        "Image": "/images.targaryen.svg",    
+        "Image": "../images.targaryen.svg",    
         "IsFemale": false,
         "Culture": "",
         "Titles": ["Master of Whisperers"],
